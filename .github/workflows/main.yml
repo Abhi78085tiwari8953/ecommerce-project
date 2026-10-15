@@ -32,6 +32,7 @@ jobs:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_APP_JWTSECRET: ${{ secrets.CI_JWT_SECRET || 'ci-only-test-jwt-secret-32-bytes-minimum-1234567890' }}
       SPRING_APP_JWTEXPIRATIONMS: "86400000"
+      SPRING_ECOM_APP_JWTCOOKIENAME: "ecommerce-jwt"
       
     steps:
       - name: Get code
