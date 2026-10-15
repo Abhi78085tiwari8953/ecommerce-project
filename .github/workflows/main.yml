@@ -36,6 +36,7 @@ jobs:
       RAZORPAY_KEY_ID: "rzp_test_ci_dummy"
       RAZORPAY_KEY_SECRET: "ci-only-dummy-secret"
       PROJECT_IMAGE: "images/"
+      IMAGE_BASE_URL: "http://localhost:8080/images/"
       
     steps:
       - name: Get code
