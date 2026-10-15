@@ -35,6 +35,7 @@ jobs:
       SPRING_ECOM_APP_JWTCOOKIENAME: "ecommerce-jwt"
       RAZORPAY_KEY_ID: "rzp_test_ci_dummy"
       RAZORPAY_KEY_SECRET: "ci-only-dummy-secret"
+      PROJECT_IMAGE: "images/"
       
     steps:
       - name: Get code
