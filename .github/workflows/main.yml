@@ -10,9 +10,26 @@ jobs:
   backend:
     name: Build Spring Boot backend
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: sb-ecom
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD || 'ci-only-test-password' }}
+          MYSQL_DATABASE: ecommerce
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -p\"$MYSQL_ROOT_PASSWORD\""
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/ecommerce
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD || 'ci-only-test-password' }}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
     steps:
       - name: Get code
@@ -25,15 +42,13 @@ jobs:
           java-version: "21"
           cache: maven
 
-      - name: Build and test
+      - name: Build and test backend
+        working-directory: sb-ecom
         run: mvn -B package
 
   frontend:
     name: Build React frontend
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ecom-fronted
 
     steps:
       - name: Get code
@@ -43,9 +58,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: npm
+          cache-dependency-path: ecom-fronted/package-lock.json
 
-      - name: Install packages
+      - name: Install frontend packages
+        working-directory: ecom-fronted
         run: npm ci
 
       - name: Build frontend
+        working-directory: ecom-fronted
+        env:
+          VITE_BACK_END_URL: ${{ vars.VITE_BACK_END_URL }}
         run: npm run build
