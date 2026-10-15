@@ -30,6 +30,7 @@ jobs:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD || 'ci-only-test-password' }}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_APP_JWTSECRET: ${{ secrets.CI_JWT_SECRET || 'ci-only-test-jwt-secret-32-bytes-minimum-1234567890' }}
 
     steps:
       - name: Get code
