@@ -1,6 +1,6 @@
 import ProductCard from "./shared/ProductCard";
-import iphoneImage from "../assets/aboutImage/iphone13.jpg";
-import samsungImage from "../assets/aboutImage/samsungGalaxy S21.jpg";
+import iphoneImage from "../assets/aboutImage/Iphone13.jpg";
+import samsungImage from "../assets/aboutImage/SamsungGalaxy S21.jpg";
 import googlePixelImage from "../assets/aboutImage/GooglePixel 6.jpg";
 
 const products = [
