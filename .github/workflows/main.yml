@@ -31,13 +31,13 @@ jobs:
       SPRING_DATASOURCE_PASSWORD: ${{ secrets.CI_MYSQL_ROOT_PASSWORD || 'ci-only-test-password' }}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_APP_JWTSECRET: ${{ secrets.CI_JWT_SECRET || 'ci-only-test-jwt-secret-32-bytes-minimum-1234567890' }}
-      SPRING_APP_JWTEXPIRATIONMS: "86400000"
-      SPRING_ECOM_APP_JWTCOOKIENAME: "ecommerce-jwt"
+      SPRING_APP_JWTEXPIRATIONMS: "3000000"
+      SPRING_ECOM_APP_JWTCOOKIENAME: "springBootEcom"
       RAZORPAY_KEY_ID: "rzp_test_ci_dummy"
       RAZORPAY_KEY_SECRET: "ci-only-dummy-secret"
       PROJECT_IMAGE: "images/"
-      IMAGE_BASE_URL: "http://localhost:8080/images/"
-      
+      IMAGE_BASE_URL: "http://localhost:8080/images"
+      FRONTEND_URL: "http://localhost:5173"
     steps:
       - name: Get code
         uses: actions/checkout@v4
