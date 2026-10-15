@@ -1,0 +1,67 @@
+# ========================
+# Maven
+# ========================
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ========================
+# Logs
+# ========================
+*.log
+
+# ========================
+# OS Files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# IDE (IntelliJ, VS Code, Eclipse)
+# ========================
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# ========================
+# Build files
+# ========================
+*.jar
+*.war
+*.ear
+
+# ========================
+# Environment variables
+# ========================
+.env
+
+# ========================
+# Node (if frontend inside project)
+# ========================
+node_modules/
+
+# ========================
+# Docker (optional)
+# ========================
+docker-compose.override.yml
+
+# ========================
+# Temporary files
+# ========================
+*.tmp
+*.swp
+
+# ========================
+# Spring Boot Sensitive Files 🔥
+# ========================
+src/main/resources/application.properties
+src/main/resources/application.yml
+
+# ========================
+# Optional (if using profiles)
+# ========================
+application-dev.properties
+application-prod.properties
