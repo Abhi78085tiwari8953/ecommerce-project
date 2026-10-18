@@ -1,5 +1,16 @@
-FROM eclipse-temurin:21-jdk
-WORKDIR /sb-ecom
-COPY target/*.jar sb-ecom.jar
+# Maven se Spring Boot JAR banayein
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+RUN mvn -B -DskipTests package
+
+# JAR chalane ke liye Java runtime
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","sb-ecom.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
